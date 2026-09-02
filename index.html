@@ -1,12 +1,149 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon premier projet</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon premier projet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #1B1F3B;
+    --bg-deep-2: #262C52;
+    --cream: #F5F3EC;
+    --amber: #F2A65A;
+    --muted: #A6ABD1;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    color: var(--cream);
+    background:
+      radial-gradient(circle at 15% 20%, rgba(242, 166, 90, 0.16), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(108, 99, 255, 0.20), transparent 50%),
+      linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-deep-2) 100%);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* petite trame de points, comme un carnet de croquis pour un premier projet */
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(245, 243, 236, 0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+  }
+
+  .hero {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2.75rem, 7vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.1s forwards;
+  }
+
+  .hero p {
+    margin-top: 1.25rem;
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 46ch;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.25s forwards;
+  }
+
+  .cta {
+    margin-top: 2.25rem;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.4s forwards;
+  }
+
+  .cta button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--bg-deep);
+    background: var(--amber);
+    border: none;
+    border-radius: 999px;
+    padding: 0.95rem 2.4rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 24px rgba(242, 166, 90, 0.25);
+  }
+
+  .cta button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(242, 166, 90, 0.35);
+  }
+
+  .cta button:focus-visible {
+    outline: 3px solid var(--cream);
+    outline-offset: 3px;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1, .hero p, .cta {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: 1.5rem;
+    }
+  }
+</style>
 </head>
 <body>
+  <main class="hero">
     <h1>Mon premier projet</h1>
-    <p>Bienvenue sur ma première page web créée avec Claude ! 🎉</p>
+    <p>Un tout petit pas, posé aujourd'hui, pour construire ce qui vient ensuite.</p>
+    <div class="cta">
+      <button type="button" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})">Découvrir</button>
+    </div>
+  </main>
 </body>
 </html>
